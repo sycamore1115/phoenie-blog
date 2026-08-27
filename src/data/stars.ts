@@ -8,6 +8,7 @@ export type SkyStar = {
   x: number
   y: number
   size: 'sm' | 'md' | 'lg'
+  href?: string
 }
 
 export const stars: SkyStar[] = [
@@ -19,6 +20,7 @@ export const stars: SkyStar[] = [
     x: 18,
     y: 28,
     size: 'md',
+    href: 'https://wisterialane.phoenie.top/',
   },
   {
     id: 'coding',
@@ -56,15 +58,15 @@ export const stars: SkyStar[] = [
     y: 16,
     size: 'sm',
   },
-  {
-    id: 'images',
-    label: '图片',
-    hint: '喜欢的图片',
-    kind: 'collect',
-    x: 88,
-    y: 50,
-    size: 'sm',
-  },
+  // {
+  //   id: 'images',
+  //   label: '图片',
+  //   hint: '喜欢的图片',
+  //   kind: 'collect',
+  //   x: 88,
+  //   y: 50,
+  //   size: 'sm',
+  // },
 ]
 
 export function getStar(id: string) {
