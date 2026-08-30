@@ -14,20 +14,31 @@ export function ArticleList({ categoryId, articles }: ArticleListProps) {
   return (
     <div className="article-list">
       {articles.map((article) => (
-        <Link
-          key={article.link}
-          to={`/stars/coding/${categoryId}/${encodeURIComponent(article.link)}`}
-          state={{ title: article.title }}
-          className={`article-item article-item--${article.important}`}
-          aria-label={`${article.title}，重要程度 ${article.important}`}
-        >
-          {article.important === 3 && (
-            <span className="article-item__mark" aria-hidden="true">
-              ✦
-            </span>
+        <div key={article.link} className={`article-item article-item--${article.important}`}>
+          <Link
+            to={`/stars/coding/${categoryId}/${encodeURIComponent(article.link)}`}
+            state={{ title: article.title }}
+            className="article-item__main"
+            aria-label={`${article.title}，重要程度 ${article.important}`}
+          >
+            {article.important === 3 && (
+              <span className="article-item__mark" aria-hidden="true">
+                ✦
+              </span>
+            )}
+            <h2 className="article-item__title">{article.title}</h2>
+          </Link>
+          {article.href && (
+            <a
+              className="article-item__video"
+              href={article.href}
+              target="_blank"
+              rel="noreferrer"
+            >
+              视频
+            </a>
           )}
-          <h2 className="article-item__title">{article.title}</h2>
-        </Link>
+        </div>
       ))}
     </div>
   )

@@ -4,12 +4,20 @@ export type CodingArticle = {
   title: string
   link: string
   important: ArticleImportance
+  href?: string
 }
 
 function parseImportant(value: unknown): ArticleImportance {
   const n = typeof value === 'number' ? value : Number(value)
   if (n === 3 || n === 2 || n === 1) return n
   return 1
+}
+
+function parseHref(value: unknown) {
+  if (typeof value !== 'string') return undefined
+  const href = value.trim()
+  if (!/^https?:\/\//i.test(href)) return undefined
+  return href
 }
 
 export const OSS_BASE = import.meta.env.DEV
@@ -32,6 +40,7 @@ export function parseArticles(data: unknown): CodingArticle[] {
         title: record.title.trim(),
         link: record.link.trim(),
         important: parseImportant(record.important),
+        href: parseHref(record.href),
       },
     ]
   })
