@@ -1,4 +1,4 @@
-import { OSS_BASE } from './articles'
+import type { ArticleLibrary } from './library'
 
 export type CodingCategory = {
   id: string
@@ -6,8 +6,8 @@ export type CodingCategory = {
   hint?: string
 }
 
-export function categoriesJsonUrl() {
-  return `${OSS_BASE}/categories.json`
+export function categoriesJsonUrl(library: ArticleLibrary) {
+  return `${library.ossBase}/categories.json`
 }
 
 export function parseCategories(data: unknown): CodingCategory[] {
@@ -32,8 +32,11 @@ export function getCategory(categories: CodingCategory[], id: string) {
   return categories.find((category) => category.id === id)
 }
 
-export async function fetchCategories(signal?: AbortSignal): Promise<CodingCategory[]> {
-  const response = await fetch(categoriesJsonUrl(), { signal })
+export async function fetchCategories(
+  library: ArticleLibrary,
+  signal?: AbortSignal,
+): Promise<CodingCategory[]> {
+  const response = await fetch(categoriesJsonUrl(library), { signal })
   if (!response.ok) {
     throw new Error(`读取分类失败（${response.status}）`)
   }

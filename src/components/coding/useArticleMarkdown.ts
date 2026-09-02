@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { fetchArticleMarkdown } from './articles'
+import { useArticleLibrary } from './library'
 
 type MarkdownState =
   | { status: 'loading' }
@@ -7,13 +8,14 @@ type MarkdownState =
   | { status: 'error'; message: string }
 
 export function useArticleMarkdown(categoryId: string, file: string) {
+  const library = useArticleLibrary()
   const [state, setState] = useState<MarkdownState>({ status: 'loading' })
 
   useEffect(() => {
     const controller = new AbortController()
     setState({ status: 'loading' })
 
-    fetchArticleMarkdown(categoryId, file, controller.signal)
+    fetchArticleMarkdown(library, categoryId, file, controller.signal)
       .then((content) => {
         setState({ status: 'ready', content })
       })
@@ -24,7 +26,7 @@ export function useArticleMarkdown(categoryId: string, file: string) {
       })
 
     return () => controller.abort()
-  }, [categoryId, file])
+  }, [library, categoryId, file])
 
   return state
 }

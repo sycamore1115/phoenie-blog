@@ -1,3 +1,5 @@
+import type { ArticleLibrary } from './library'
+
 export type ArticleImportance = 1 | 2 | 3
 
 export type CodingArticle = {
@@ -20,12 +22,12 @@ function parseHref(value: unknown) {
   return href
 }
 
-export const OSS_BASE = import.meta.env.DEV
-  ? '/oss-coding'
-  : 'https://phoenie-coding.oss-cn-hangzhou.aliyuncs.com'
+function isHidden(value: unknown) {
+  return value === true || value === 'true'
+}
 
-export function homeJsonUrl(categoryId: string) {
-  return `${OSS_BASE}/${categoryId}/home.json`
+export function homeJsonUrl(library: ArticleLibrary, categoryId: string) {
+  return `${library.ossBase}/${categoryId}/home.json`
 }
 
 export function parseArticles(data: unknown): CodingArticle[] {
@@ -35,6 +37,7 @@ export function parseArticles(data: unknown): CodingArticle[] {
     if (!item || typeof item !== 'object') return []
     const record = item as Record<string, unknown>
     if (typeof record.title !== 'string' || typeof record.link !== 'string') return []
+    if (isHidden(record.hide)) return []
     return [
       {
         title: record.title.trim(),
@@ -63,32 +66,38 @@ export function findArticle(articles: CodingArticle[], link: string) {
   }
 }
 
-export function articleDirUrl(categoryId: string, link: string) {
+export function articleDirUrl(library: ArticleLibrary, categoryId: string, link: string) {
   const slug = articleSlug(link)
-  return `${OSS_BASE}/${categoryId}/${encodeURIComponent(slug)}`
+  return `${library.ossBase}/${categoryId}/${encodeURIComponent(slug)}`
 }
 
-export function articleUrl(categoryId: string, link: string) {
-  return `${articleDirUrl(categoryId, link)}/main.markdown`
+export function articleUrl(library: ArticleLibrary, categoryId: string, link: string) {
+  return `${articleDirUrl(library, categoryId, link)}/main.markdown`
 }
 
-export function articleAssetUrl(categoryId: string, link: string, src: string) {
+export function articleAssetUrl(
+  library: ArticleLibrary,
+  categoryId: string,
+  link: string,
+  src: string,
+) {
   if (/^(https?:|data:|blob:)/i.test(src)) return src
 
   const cleaned = src.replace(/^\.\//, '').replaceAll('\\', '/')
   if (!cleaned || cleaned.startsWith('/') || cleaned.includes('..')) return src
 
-  const dir = articleDirUrl(categoryId, link)
+  const dir = articleDirUrl(library, categoryId, link)
   const encoded = cleaned.split('/').map((part) => encodeURIComponent(part)).join('/')
   return `${dir}/${encoded}`
 }
 
 export async function fetchArticleMarkdown(
+  library: ArticleLibrary,
   categoryId: string,
   file: string,
   signal?: AbortSignal,
 ): Promise<string> {
-  const response = await fetch(articleUrl(categoryId, file), { signal })
+  const response = await fetch(articleUrl(library, categoryId, file), { signal })
   if (!response.ok) {
     throw new Error(`读取文章失败（${response.status}）`)
   }
@@ -96,10 +105,11 @@ export async function fetchArticleMarkdown(
 }
 
 export async function fetchCategoryArticles(
+  library: ArticleLibrary,
   categoryId: string,
   signal?: AbortSignal,
 ): Promise<CodingArticle[]> {
-  const response = await fetch(homeJsonUrl(categoryId), { signal })
+  const response = await fetch(homeJsonUrl(library, categoryId), { signal })
   if (!response.ok) {
     throw new Error(`读取文章列表失败（${response.status}）`)
   }

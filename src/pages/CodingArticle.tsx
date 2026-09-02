@@ -1,18 +1,21 @@
+import { useState } from 'react'
 import { Link, Navigate, useLocation, useParams } from 'react-router-dom'
 import { articleAssetUrl, findArticle } from '../components/coding/articles'
 import { getCategory } from '../components/coding/categories'
+import { useArticleLibrary } from '../components/coding/library'
 import { MarkdownView } from '../components/coding/MarkdownView'
 import { useArticleMarkdown } from '../components/coding/useArticleMarkdown'
 import { useCategoryArticles } from '../components/coding/useCategoryArticles'
 import { useCodingCategories } from '../components/coding/useCodingCategories'
 
 export function CodingArticle() {
+  const library = useArticleLibrary()
   const { categoryId, articleFile } = useParams()
   const categoriesState = useCodingCategories()
   const file = articleFile ? decodeURIComponent(articleFile) : ''
 
   if (!categoryId || !file) {
-    return <Navigate to="/stars/coding" replace />
+    return <Navigate to={library.route} replace />
   }
 
   if (categoriesState.status === 'loading') {
@@ -29,7 +32,7 @@ export function CodingArticle() {
     return (
       <main className="doc-page">
         <div className="coding-page coding-page--article">
-          <Link className="placeholder__back" to="/stars/coding">
+          <Link className="placeholder__back" to={library.route}>
             ← 返回分类
           </Link>
           <p className="quote-list__empty">{categoriesState.message}</p>
@@ -40,7 +43,7 @@ export function CodingArticle() {
 
   const category = getCategory(categoriesState.categories, categoryId)
   if (!category) {
-    return <Navigate to="/stars/coding" replace />
+    return <Navigate to={library.route} replace />
   }
 
   return <CodingArticlePage categoryId={category.id} label={category.label} file={file} />
@@ -53,7 +56,9 @@ type CodingArticlePageProps = {
 }
 
 function CodingArticlePage({ categoryId, label, file }: CodingArticlePageProps) {
+  const library = useArticleLibrary()
   const location = useLocation()
+  const [wide, setWide] = useState(false)
   const listState = useCategoryArticles(categoryId)
   const markdownState = useArticleMarkdown(categoryId, file)
   const titleFromState =
@@ -67,10 +72,19 @@ function CodingArticlePage({ categoryId, label, file }: CodingArticlePageProps) 
 
   return (
     <main className="doc-page">
-      <div className="coding-page coding-page--article">
-        <Link className="placeholder__back" to={`/stars/coding/${categoryId}`}>
-          ← 返回{label}
-        </Link>
+      <div className={`coding-page coding-page--article${wide ? ' coding-page--wide' : ''}`}>
+        <div className="article-toolbar">
+          <Link className="placeholder__back" to={`${library.route}/${categoryId}`}>
+            ← 返回{label}
+          </Link>
+          <button
+            type="button"
+            className="article-wide-toggle"
+            onClick={() => setWide((current) => !current)}
+          >
+            {wide ? '退出全屏' : '全屏'}
+          </button>
+        </div>
         <header className="quotes-page__header">
           <h1 className="placeholder__title">{title}</h1>
         </header>
@@ -81,7 +95,7 @@ function CodingArticlePage({ categoryId, label, file }: CodingArticlePageProps) 
         {markdownState.status === 'ready' && (
           <MarkdownView
             content={markdownState.content}
-            resolveSrc={(src) => articleAssetUrl(categoryId, file, src)}
+            resolveSrc={(src) => articleAssetUrl(library, categoryId, file, src)}
           />
         )}
       </div>

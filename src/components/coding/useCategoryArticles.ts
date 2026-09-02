@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { fetchCategoryArticles, type CodingArticle } from './articles'
+import { useArticleLibrary } from './library'
 
 type ArticlesState =
   | { status: 'loading' }
@@ -7,13 +8,14 @@ type ArticlesState =
   | { status: 'error'; message: string }
 
 export function useCategoryArticles(categoryId: string) {
+  const library = useArticleLibrary()
   const [state, setState] = useState<ArticlesState>({ status: 'loading' })
 
   useEffect(() => {
     const controller = new AbortController()
     setState({ status: 'loading' })
 
-    fetchCategoryArticles(categoryId, controller.signal)
+    fetchCategoryArticles(library, categoryId, controller.signal)
       .then((articles) => {
         setState({ status: 'ready', articles })
       })
@@ -24,7 +26,7 @@ export function useCategoryArticles(categoryId: string) {
       })
 
     return () => controller.abort()
-  }, [categoryId])
+  }, [library, categoryId])
 
   return state
 }

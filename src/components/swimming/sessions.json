@@ -1,0 +1,186 @@
+[
+  {
+    "title": "第一期 · 六节蛙泳课",
+    "sessions": [
+      {
+        "date": "2024-08-31",
+        "note": "报名了六节蛙泳课，第一次下水，有很大的恐惧感。",
+        "milestone": true
+      },
+      {
+        "date": "2024-09-08",
+        "note": "觉得是因为不适应所以胃疼。",
+        "milestone": false
+      },
+      {
+        "date": "2024-09-21",
+        "note": "依旧胃疼，但学会了蛙泳腿",
+        "milestone": false
+      },
+      {
+        "date": "2024-09-24",
+        "note": "完全脱离不了浮板和背漂。",
+        "milestone": false
+      },
+      {
+        "date": "2024-09-28",
+        "note": "倒数第二节课，教练说我动作可以，但害怕。",
+        "milestone": false
+      },
+      {
+        "date": "2024-10-23",
+        "note": "最后一节课，还是胃疼 + 恐水，我可能要放弃了",
+        "milestone": true
+      }
+    ]
+  },
+  {
+    "title": "第二期 · 新馆再试",
+    "sessions": [
+      {
+        "date": "2025-04-20",
+        "note": "家附近开了个新的游泳馆，想再试试看。",
+        "milestone": true
+      },
+      {
+        "date": "2025-06-06",
+        "note": "依旧胃疼，每次去都要带背漂和浮板。",
+        "milestone": false
+      },
+      {
+        "date": "2025-06-16",
+        "note": "胃疼 + 背漂 + 浮板。",
+        "milestone": false
+      },
+      {
+        "date": "2025-06-24",
+        "note": "胃疼 + 背漂 + 浮板。",
+        "milestone": false
+      },
+      {
+        "date": "2025-06-27",
+        "note": "胃疼 + 背漂 + 浮板。",
+        "milestone": false
+      },
+      {
+        "date": "2025-09-22",
+        "note": "我在想我可能就是不适合游泳的体质...",
+        "milestone": true
+      }
+    ]
+  },
+  {
+    "title": "第三期 · 学会蛙泳了",
+    "sessions": [
+      {
+        "date": "2026-04-07",
+        "note": "又想再试一次，报了一节体验课，结果这次我居然不用背漂和浮板了！",
+        "milestone": true
+      },
+      {
+        "date": "2026-04-08",
+        "note": "果断下单了10节课，感觉这个教练很专业呀。",
+        "milestone": true
+      },
+      {
+        "date": "2026-04-14",
+        "note": "直接学习换气，换气真的好难啊。",
+        "milestone": false
+      },
+      {
+        "date": "2026-04-17",
+        "note": "总结了一下胃疼的原因，应该是因为太紧张了。",
+        "milestone": false
+      },
+      {
+        "date": "2026-04-21",
+        "note": "两次换气一次划手。",
+        "milestone": false
+      },
+      {
+        "date": "2026-04-24",
+        "note": "一次换气一次划手。",
+        "milestone": false
+      },
+      {
+        "date": "2026-05-19",
+        "note": "就突然能游了，剩下就是自己练习了。",
+        "milestone": true
+      },
+      {
+        "date": "2026-05-22",
+        "note": "教练带我去深水区了，吓死了。",
+        "milestone": false
+      },
+      {
+        "date": "2026-05-27",
+        "note": "克服深水恐惧，失败...",
+        "milestone": false
+      },
+      {
+        "date": "2026-05-29",
+        "note": "踩水学习，失败...",
+        "milestone": false
+      },
+      {
+        "date": "2026-06-03",
+        "note": "最后一节课，蛙泳算是学成啦！",
+        "milestone": true
+      }
+    ]
+  },
+  {
+    "title": "第四期 · 蛙泳练习中",
+    "sessions": [
+        {
+            "date": "2026-04-10",
+            "note": "自己练习了一下漂浮，不胃疼了。",
+            "milestone": false
+          },
+          {
+            "date": "2026-05-26",
+            "note": "浅水区练习中...",
+            "milestone": false
+          },
+          {
+            "date": "2026-05-31",
+            "note": "浅水区稳定25米了。",
+            "milestone": false
+          },
+            {"date": "2026-06-02",
+            "note": "继续练习...",
+            "milestone": false
+          },
+          {
+            "date": "2026-06-08",
+            "note": "居然退步了，感觉不对了。",
+            "milestone": true
+          },
+          {
+            "date": "2026-06-17",
+            "note": "收腿时机不对，低头再收腿。",
+            "milestone": false
+          },
+          {
+            "date": "2026-06-18",
+            "note": "被旁边自由泳的水打到，在深水区被救生员捞起来了...",
+            "milestone": true
+          },
+          {
+            "date": "2026-06-24",
+            "note": "默默又退回浅水区了。",
+            "milestone": false
+          },
+          {
+            "date": "2026-07-09",
+            "note": "人越来越多，要没地方游了。",
+            "milestone": false
+          },
+          {
+            "date": "2026-07-27",
+            "note": "暂避暑期锋芒，又到了懈怠期了，希望有一天我还能再回来。",
+            "milestone": true
+          }
+    ]
+  }
+]

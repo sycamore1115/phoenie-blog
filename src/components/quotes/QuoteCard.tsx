@@ -5,19 +5,15 @@ type QuoteCardProps = {
 }
 
 export function QuoteCard({ quote }: QuoteCardProps) {
-  const hasMeta = Boolean(quote.author || quote.source || quote.recordedAt)
-
   return (
     <article className="quote-card">
       <p className="quote-card__text">{quote.text}</p>
-      {hasMeta && (
+      {quote.translation && <p className="quote-card__note">{quote.translation}</p>}
+      {quote.source && (
         <footer className="quote-card__meta">
-          {quote.author && <span>{quote.author}</span>}
-          {quote.source && <span>{quote.source}</span>}
-          {quote.recordedAt && <time dateTime={quote.recordedAt}>{quote.recordedAt}</time>}
+          <span>{quote.source}</span>
         </footer>
       )}
-      {quote.note && <p className="quote-card__note">{quote.note}</p>}
     </article>
   )
 }

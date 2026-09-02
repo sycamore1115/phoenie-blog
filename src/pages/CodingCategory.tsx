@@ -1,16 +1,18 @@
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { ArticleList } from '../components/coding/ArticleList'
 import { getCategory } from '../components/coding/categories'
+import { useArticleLibrary } from '../components/coding/library'
 import { useCategoryArticles } from '../components/coding/useCategoryArticles'
 import { useCodingCategories } from '../components/coding/useCodingCategories'
 import { Starfield } from '../components/Starfield'
 
 export function CodingCategory() {
+  const library = useArticleLibrary()
   const { categoryId } = useParams()
   const categoriesState = useCodingCategories()
 
   if (!categoryId) {
-    return <Navigate to="/stars/coding" replace />
+    return <Navigate to={library.route} replace />
   }
 
   if (categoriesState.status === 'loading') {
@@ -31,7 +33,7 @@ export function CodingCategory() {
         <div className="sky__nebula" aria-hidden="true" />
         <Starfield />
         <div className="coding-page coding-page--list">
-          <Link className="placeholder__back" to="/stars/coding">
+          <Link className="placeholder__back" to={library.route}>
             ← 返回分类
           </Link>
           <p className="quote-list__empty">{categoriesState.message}</p>
@@ -42,7 +44,7 @@ export function CodingCategory() {
 
   const category = getCategory(categoriesState.categories, categoryId)
   if (!category) {
-    return <Navigate to="/stars/coding" replace />
+    return <Navigate to={library.route} replace />
   }
 
   return <CodingCategoryPage categoryId={category.id} label={category.label} />
@@ -54,6 +56,7 @@ type CodingCategoryPageProps = {
 }
 
 function CodingCategoryPage({ categoryId, label }: CodingCategoryPageProps) {
+  const library = useArticleLibrary()
   const state = useCategoryArticles(categoryId)
 
   return (
@@ -62,7 +65,7 @@ function CodingCategoryPage({ categoryId, label }: CodingCategoryPageProps) {
       <Starfield />
 
       <div className="coding-page coding-page--list">
-        <Link className="placeholder__back" to="/stars/coding">
+        <Link className="placeholder__back" to={library.route}>
           ← 返回分类
         </Link>
         <header className="quotes-page__header">

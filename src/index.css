@@ -137,8 +137,10 @@ a {
 }
 
 .sky-star--lg {
-  --core: 11px;
-  --glow: 46px;
+  width: 56px;
+  height: 56px;
+  --core: 14px;
+  --glow: 56px;
 }
 
 .sky-star__core,
@@ -207,6 +209,12 @@ a {
   color: var(--ink);
 }
 
+.sky-star--lg .sky-star__label {
+  font-size: 1.15rem;
+  letter-spacing: 0.24em;
+  text-indent: 0.24em;
+}
+
 .sky-star__hint {
   font-size: 0.72rem;
   letter-spacing: 0.12em;
@@ -214,6 +222,10 @@ a {
   opacity: 0;
   transform: translateY(-4px);
   transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.sky-star--lg .sky-star__hint {
+  font-size: 0.84rem;
 }
 
 .sky-star:hover .sky-star__core,
@@ -339,7 +351,7 @@ a {
 .quote-card__text {
   margin: 0;
   font-family: var(--serif);
-  font-size: clamp(1.35rem, 3.2vw, 1.85rem);
+  font-size: clamp(1.05rem, 2.2vw, 1.28rem);
   font-weight: 500;
   line-height: 1.7;
   color: #fff8ea;
@@ -365,6 +377,65 @@ a {
   font-size: 0.88rem;
   line-height: 1.6;
   color: var(--mute);
+}
+
+.miniapp-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.miniapp-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 28px;
+  padding: 28px 8px;
+  border-top: 1px solid rgba(246, 239, 226, 0.12);
+}
+
+.miniapp-card__name {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+  font-weight: 500;
+  line-height: 1.4;
+  color: #fff8ea;
+}
+
+.miniapp-card__intro {
+  margin: 10px 0 0;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--mute);
+  text-wrap: pretty;
+}
+
+.miniapp-card__link {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 4px 12px;
+  border: 1px solid rgba(246, 239, 226, 0.2);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--mute);
+}
+
+.miniapp-card__link:hover,
+.miniapp-card__link:focus-visible {
+  border-color: rgba(240, 215, 163, 0.55);
+  color: var(--gold);
+  outline: none;
+}
+
+.miniapp-card__qr {
+  width: 128px;
+  height: 128px;
+  padding: 8px;
+  object-fit: contain;
+  border-radius: 12px;
+  background: #fff8ea;
 }
 
 .coding-page {
@@ -484,6 +555,15 @@ a {
   margin-top: 8px;
 }
 
+.swim-summary {
+  margin: 16px 0 0;
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-style: italic;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+}
+
 .coding-page--list .article-item {
   padding: 12px 6px;
 }
@@ -532,6 +612,213 @@ a {
 
 .coding-page--article {
   width: min(760px, calc(100% - 48px));
+}
+
+.coding-page--article.coding-page--wide {
+  width: calc(100% - 48px);
+}
+
+.weight-chart {
+  margin: 0;
+  padding: 12px 8px 0;
+}
+
+.weight-chart svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.weight-chart__grid {
+  stroke: rgba(246, 239, 226, 0.1);
+  stroke-width: 1;
+}
+
+.weight-chart__axis,
+.weight-chart__year {
+  fill: var(--mute);
+  font-size: 12px;
+}
+
+.weight-chart__area {
+  fill: rgba(240, 215, 163, 0.12);
+}
+
+.weight-chart__line {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.weight-chart__dot {
+  fill: #fff8ea;
+  stroke: var(--gold);
+  stroke-width: 2;
+}
+
+.weight-chart__value {
+  fill: #fff8ea;
+  font-size: 13px;
+}
+
+.swim-map {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+.swim-phase__title {
+  margin: 0 0 8px;
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-align: center;
+  color: var(--gold);
+}
+
+.swim-map__figure {
+  position: relative;
+  margin: 0;
+}
+
+.swim-map__figure svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.swim-map__line {
+  fill: none;
+  stroke: rgba(207, 230, 255, 0.35);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.swim-map__year {
+  fill: var(--mute);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+}
+
+.swim-map__glow {
+  fill: rgba(240, 163, 163, 0.18);
+}
+
+.swim-map__dot {
+  fill: #cfe6ff;
+  stroke: rgba(255, 248, 234, 0.7);
+  stroke-width: 1.5;
+  cursor: pointer;
+}
+
+.swim-map__dot--milestone {
+  fill: #f0a3a3;
+  stroke: #fff8ea;
+}
+
+.swim-map__dot--active {
+  stroke: var(--gold);
+  stroke-width: 2.5;
+}
+
+.swim-map__hit {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.swim-map__hit:focus-visible {
+  outline: 1px solid var(--gold);
+}
+
+.swim-map__card {
+  padding: 20px 8px 8px;
+  border-top: 1px solid rgba(246, 239, 226, 0.12);
+  text-align: center;
+}
+
+.swim-map__meta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 0 10px;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  color: var(--mute);
+}
+
+.swim-map__note {
+  margin: 0 auto;
+  max-width: 36em;
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: #fff8ea;
+}
+
+.swim-map__card--milestone .swim-map__note {
+  color: #f0a3a3;
+}
+
+.swim-log__mark {
+  color: #f0a3a3;
+}
+
+.swim-log__tag {
+  padding: 1px 8px;
+  border: 1px solid rgba(240, 163, 163, 0.45);
+  border-radius: 999px;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  color: #f0a3a3;
+}
+
+.article-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.article-toolbar .placeholder__back {
+  margin-bottom: 0;
+}
+
+.article-wide-toggle {
+  padding: 4px 12px;
+  border: 1px solid rgba(246, 239, 226, 0.2);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--mute);
+  font: inherit;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+}
+
+.article-wide-toggle:hover,
+.article-wide-toggle:focus-visible {
+  border-color: rgba(240, 215, 163, 0.55);
+  color: var(--gold);
+  outline: none;
+}
+
+@media (max-width: 720px) {
+  .article-wide-toggle {
+    display: none;
+  }
 }
 
 .markdown-body {
@@ -692,6 +979,16 @@ a {
   .sky__blog {
     letter-spacing: 0.4em;
     text-indent: 0.4em;
+  }
+
+  .miniapp-card {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .miniapp-card__qr {
+    width: 148px;
+    height: 148px;
   }
 }
 

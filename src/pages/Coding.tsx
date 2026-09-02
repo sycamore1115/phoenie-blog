@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom'
 import { CategoryGrid } from '../components/coding/CategoryGrid'
+import { useArticleLibrary } from '../components/coding/library'
 import { useCodingCategories } from '../components/coding/useCodingCategories'
 import { Starfield } from '../components/Starfield'
 
 export function Coding() {
+  const library = useArticleLibrary()
   const state = useCodingCategories()
 
   return (
@@ -16,8 +18,8 @@ export function Coding() {
           ← 返回星空
         </Link>
         <header className="quotes-page__header">
-          <p className="placeholder__kicker">代码与创造</p>
-          <h1 className="placeholder__title">编程</h1>
+          <p className="placeholder__kicker">{library.kicker}</p>
+          <h1 className="placeholder__title">{library.title}</h1>
           {state.status === 'ready' && (
             <p className="quotes-page__count">{state.categories.length} 个分类</p>
           )}

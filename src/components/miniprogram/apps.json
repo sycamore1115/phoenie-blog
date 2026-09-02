@@ -1,0 +1,20 @@
+[
+  {
+    "name": "打牌记账本",
+    "link": "#小程序://打牌记账本/hJc7PBMZnn7T3ef",
+    "qr": "01.png",
+    "intro": "过节打牌记账器，平账、记账、赢钱三种模式任你选择~"
+  },
+  {
+    "name": "比赛Battle",
+    "link": "#小程序://比赛Battle/cvaTf2RZLymkFLw",
+    "qr": "02.png",
+    "intro": "双人比赛，battle模式！"
+  },
+  {
+    "name": "AA拼单小助手",
+    "link": "#小程序://AA拼单小助手/nzXSORlGAnUUXzn",
+    "qr": "03.png",
+    "intro": "可手动或者拍照上传订单，AA分摊，朋友之间拼单好帮手~"
+  }
+]

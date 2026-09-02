@@ -3,13 +3,16 @@ import fs from 'node:fs'
 import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 
-const ARTICLES_ROOT = path.resolve('C:/myProject/coding-article')
+const ARTICLE_ROOTS = [
+  { prefix: '/oss-coding', root: path.resolve('C:/myProject/blogs/coding-article') },
+  { prefix: '/oss-english', root: path.resolve('C:/myProject/blogs/english-article') },
+] as const
 
-function localArticlesPlugin(root: string): Plugin {
+function localArticlesPlugin(prefix: string, root: string): Plugin {
   return {
-    name: 'local-coding-articles',
+    name: `local-articles-${prefix.replace(/^\//, '')}`,
     configureServer(server) {
-      server.middlewares.use('/oss-coding', (req, res, next) => {
+      server.middlewares.use(prefix, (req, res, next) => {
         if (req.method !== 'GET' && req.method !== 'HEAD') {
           next()
           return
@@ -52,5 +55,5 @@ function localArticlesPlugin(root: string): Plugin {
 }
 
 export default defineConfig({
-  plugins: [react(), localArticlesPlugin(ARTICLES_ROOT)],
+  plugins: [react(), ...ARTICLE_ROOTS.map(({ prefix, root }) => localArticlesPlugin(prefix, root))],
 })

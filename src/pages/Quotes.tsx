@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Starfield } from '../components/Starfield'
 import { QuoteList } from '../components/quotes/QuoteList'
-import { quotes } from '../components/quotes/quotes'
+import { visibleQuotes } from '../components/quotes/quotes'
 
 export function Quotes() {
   return (
@@ -16,7 +16,7 @@ export function Quotes() {
         <header className="quotes-page__header">
           <p className="placeholder__kicker">喜欢的句子</p>
           <h1 className="placeholder__title">句子</h1>
-          <p className="quotes-page__count">{quotes.length} 则</p>
+          <p className="quotes-page__count">{visibleQuotes.length} 则</p>
         </header>
         <QuoteList />
       </div>

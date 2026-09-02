@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import type { CodingArticle } from './articles'
+import { useArticleLibrary } from './library'
 
 type ArticleListProps = {
   categoryId: string
@@ -7,6 +8,7 @@ type ArticleListProps = {
 }
 
 export function ArticleList({ categoryId, articles }: ArticleListProps) {
+  const library = useArticleLibrary()
   if (articles.length === 0) {
     return <p className="quote-list__empty">这个分类还没有文章。</p>
   }
@@ -16,7 +18,7 @@ export function ArticleList({ categoryId, articles }: ArticleListProps) {
       {articles.map((article) => (
         <div key={article.link} className={`article-item article-item--${article.important}`}>
           <Link
-            to={`/stars/coding/${categoryId}/${encodeURIComponent(article.link)}`}
+            to={`${library.route}/${categoryId}/${encodeURIComponent(article.link)}`}
             state={{ title: article.title }}
             className="article-item__main"
             aria-label={`${article.title}，重要程度 ${article.important}`}
