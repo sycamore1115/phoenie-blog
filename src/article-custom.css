@@ -1,0 +1,36 @@
+/*
+  文章自定义样式（只作用于正文）
+
+  用法：
+  1. 在 markdown / html 里写 <div class="你的类名">...</div>
+  2. 在下面用 .markdown-body .你的类名 { ... } 写样式
+
+  注意：
+  - 一定要带 .markdown-body，否则会影响到首页、列表等其它页面
+  - 文章标签上的 style="..." 优先级更高，会盖过这里；布局稳定后可以把内联 style 删掉
+*/
+
+.markdown-body .ponit-simon-gdk {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+@media (min-width: 900px) {
+  .markdown-body .ponit-simon-gdk {
+    flex-direction: row;
+    align-items: stretch;
+  }
+}
+
+.markdown-body .ponit-card-simon-gdk {
+  flex: 1 1 auto;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 20px;
+  border: 2px solid #c4b89e;
+  border-radius: 16px;
+  background: rgb(247, 243, 223);
+  box-shadow: 0 4px 0 #bdaea0;
+}

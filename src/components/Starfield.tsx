@@ -7,6 +7,7 @@ type Particle = {
   tw: number
   sp: number
   drift: number
+  hue: 'mint' | 'gold' | 'pink'
 }
 
 type Meteor = {
@@ -50,15 +51,17 @@ export function Starfield() {
 
     const seed = () => {
       particles.length = 0
-      const count = Math.round((width * height) / 2600)
+      const count = Math.round((width * height) / 4200)
       for (let i = 0; i < count; i += 1) {
+        const roll = Math.random()
         particles.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          r: Math.random() ** 2 * 1.6 + 0.2,
+          r: Math.random() ** 2 * 2.2 + 0.4,
           tw: Math.random() * Math.PI * 2,
           sp: 0.006 + Math.random() * 0.018,
           drift: (Math.random() - 0.5) * 0.04,
+          hue: roll > 0.82 ? 'pink' : roll > 0.55 ? 'gold' : 'mint',
         })
       }
     }
@@ -95,17 +98,24 @@ export function Starfield() {
         const px = star.x + mx * star.r
         const py = star.y + my * star.r
 
+        const rgb =
+          star.hue === 'gold'
+            ? '247, 205, 103'
+            : star.hue === 'pink'
+              ? '248, 166, 178'
+              : '25, 200, 185'
+
         if (star.r > 1.05) {
           const glow = ctx.createRadialGradient(px, py, 0, px, py, star.r * 6)
-          glow.addColorStop(0, `rgba(255, 236, 200, ${twinkle * 0.28})`)
-          glow.addColorStop(1, 'rgba(255, 236, 200, 0)')
+          glow.addColorStop(0, `rgba(${rgb}, ${twinkle * 0.32})`)
+          glow.addColorStop(1, `rgba(${rgb}, 0)`)
           ctx.fillStyle = glow
           ctx.beginPath()
           ctx.arc(px, py, star.r * 6, 0, Math.PI * 2)
           ctx.fill()
         }
 
-        ctx.fillStyle = `rgba(255, 248, 232, ${twinkle})`
+        ctx.fillStyle = `rgba(${rgb}, ${0.35 + twinkle * 0.45})`
         ctx.beginPath()
         ctx.arc(px, py, star.r, 0, Math.PI * 2)
         ctx.fill()
@@ -125,14 +135,14 @@ export function Starfield() {
         meteor.y += meteor.vy
         const fade = 1 - meteor.life / meteor.max
 
-        ctx.strokeStyle = `rgba(255, 244, 220, ${fade * 0.85})`
+        ctx.strokeStyle = `rgba(25, 200, 185, ${fade * 0.8})`
         ctx.lineWidth = 1.4
         ctx.beginPath()
         ctx.moveTo(meteor.x, meteor.y)
         ctx.lineTo(meteor.x - meteor.vx * 7, meteor.y - meteor.vy * 7)
         ctx.stroke()
 
-        ctx.fillStyle = `rgba(255, 252, 245, ${fade})`
+        ctx.fillStyle = `rgba(247, 205, 103, ${fade})`
         ctx.beginPath()
         ctx.arc(meteor.x, meteor.y, 1.5, 0, Math.PI * 2)
         ctx.fill()

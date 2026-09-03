@@ -1,14 +1,11 @@
 import { Link } from 'react-router-dom'
 import { MiniProgramList } from '../components/miniprogram/MiniProgramList'
 import { miniPrograms } from '../components/miniprogram/apps'
-import { Starfield } from '../components/Starfield'
+import { IslandPage } from '../components/IslandPage'
 
 export function MiniPrograms() {
   return (
-    <main className="sky sky--scroll">
-      <div className="sky__nebula" aria-hidden="true" />
-      <Starfield />
-
+    <IslandPage>
       <div className="coding-page coding-page--list">
         <Link className="placeholder__back" to="/">
           ← 返回星空
@@ -20,6 +17,6 @@ export function MiniPrograms() {
         </header>
         <MiniProgramList />
       </div>
-    </main>
+    </IslandPage>
   )
 }

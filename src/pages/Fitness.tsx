@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { WeightChart } from '../components/fitness/WeightChart'
 import { weights } from '../components/fitness/weights'
-import { Starfield } from '../components/Starfield'
+import { IslandPage } from '../components/IslandPage'
 
 export function Fitness() {
   const start = weights[0]
@@ -9,10 +9,7 @@ export function Fitness() {
   const lost = start && latest ? start.jin - latest.jin : 0
 
   return (
-    <main className="sky sky--scroll">
-      <div className="sky__nebula" aria-hidden="true" />
-      <Starfield />
-
+    <IslandPage>
       <div className="coding-page">
         <Link className="placeholder__back" to="/">
           ← 返回星空
@@ -28,6 +25,6 @@ export function Fitness() {
         </header>
         <WeightChart />
       </div>
-    </main>
+    </IslandPage>
   )
 }

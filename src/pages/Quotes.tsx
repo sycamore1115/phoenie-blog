@@ -1,14 +1,11 @@
 import { Link } from 'react-router-dom'
-import { Starfield } from '../components/Starfield'
+import { IslandPage } from '../components/IslandPage'
 import { QuoteList } from '../components/quotes/QuoteList'
 import { visibleQuotes } from '../components/quotes/quotes'
 
 export function Quotes() {
   return (
-    <main className="sky sky--scroll">
-      <div className="sky__nebula" aria-hidden="true" />
-      <Starfield />
-
+    <IslandPage>
       <div className="quotes-page">
         <Link className="placeholder__back" to="/">
           ← 返回星空
@@ -20,6 +17,6 @@ export function Quotes() {
         </header>
         <QuoteList />
       </div>
-    </main>
+    </IslandPage>
   )
 }

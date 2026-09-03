@@ -2,17 +2,14 @@ import { Link } from 'react-router-dom'
 import { CategoryGrid } from '../components/coding/CategoryGrid'
 import { useArticleLibrary } from '../components/coding/library'
 import { useCodingCategories } from '../components/coding/useCodingCategories'
-import { Starfield } from '../components/Starfield'
+import { IslandPage } from '../components/IslandPage'
 
 export function Coding() {
   const library = useArticleLibrary()
   const state = useCodingCategories()
 
   return (
-    <main className="sky sky--scroll">
-      <div className="sky__nebula" aria-hidden="true" />
-      <Starfield />
-
+    <IslandPage>
       <div className="coding-page">
         <Link className="placeholder__back" to="/">
           ← 返回星空
@@ -28,6 +25,6 @@ export function Coding() {
         {state.status === 'error' && <p className="quote-list__empty">{state.message}</p>}
         {state.status === 'ready' && <CategoryGrid categories={state.categories} />}
       </div>
-    </main>
+    </IslandPage>
   )
 }

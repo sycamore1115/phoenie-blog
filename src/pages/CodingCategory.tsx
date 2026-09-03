@@ -4,7 +4,7 @@ import { getCategory } from '../components/coding/categories'
 import { useArticleLibrary } from '../components/coding/library'
 import { useCategoryArticles } from '../components/coding/useCategoryArticles'
 import { useCodingCategories } from '../components/coding/useCodingCategories'
-import { Starfield } from '../components/Starfield'
+import { IslandPage } from '../components/IslandPage'
 
 export function CodingCategory() {
   const library = useArticleLibrary()
@@ -17,28 +17,24 @@ export function CodingCategory() {
 
   if (categoriesState.status === 'loading') {
     return (
-      <main className="sky sky--scroll">
-        <div className="sky__nebula" aria-hidden="true" />
-        <Starfield />
+      <IslandPage>
         <div className="coding-page coding-page--list">
           <p className="quote-list__empty">正在读取分类…</p>
         </div>
-      </main>
+      </IslandPage>
     )
   }
 
   if (categoriesState.status === 'error') {
     return (
-      <main className="sky sky--scroll">
-        <div className="sky__nebula" aria-hidden="true" />
-        <Starfield />
+      <IslandPage>
         <div className="coding-page coding-page--list">
           <Link className="placeholder__back" to={library.route}>
             ← 返回分类
           </Link>
           <p className="quote-list__empty">{categoriesState.message}</p>
         </div>
-      </main>
+      </IslandPage>
     )
   }
 
@@ -60,10 +56,7 @@ function CodingCategoryPage({ categoryId, label }: CodingCategoryPageProps) {
   const state = useCategoryArticles(categoryId)
 
   return (
-    <main className="sky sky--scroll">
-      <div className="sky__nebula" aria-hidden="true" />
-      <Starfield />
-
+    <IslandPage>
       <div className="coding-page coding-page--list">
         <Link className="placeholder__back" to={library.route}>
           ← 返回分类
@@ -80,6 +73,6 @@ function CodingCategoryPage({ categoryId, label }: CodingCategoryPageProps) {
           <ArticleList categoryId={categoryId} articles={state.articles} />
         )}
       </div>
-    </main>
+    </IslandPage>
   )
 }

@@ -4,6 +4,7 @@ import rehypeHighlight from 'rehype-highlight'
 import rehypeRaw from 'rehype-raw'
 import { remarkColor } from './remarkColor'
 import 'highlight.js/styles/github-dark.css'
+import '../../article-custom.css'
 
 type MarkdownViewProps = {
   content: string
